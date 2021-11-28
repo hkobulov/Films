@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container p-2">
+        <h1 class="fs-2 mb-3 text-center">Movies catalog</h1>
+        <form class="form row" action="https://echo.htmlacademy.ru/" method="get">
+            <!-- Movie left container -->
+            <div class="movie-left col-xl-4 col-md-4 col-sm-12">
+                <div class="mb-4">
+                    <div class="mb-3">
+                        <input class="form-control" type="text" placeholder="Film name" name="film_name" aria-label="Film name">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <input class="form-control" type="number" placeholder="Number" name="film_number" aria-label="Number">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <select class="form-select" aria-label="All category" name="category">
+                            <option selected>All</option>
+                            <option value="documentary">Documentary</option>
+                            <option value="music">Music</option>
+                            <option value="drama">Drama</option>
+                            <option value="historical">Historical</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <select class="form-select" aria-label="Rating" name="rating">
+                            <option selected>Rating</option>
+                            <option value="high_to_low">Rating (high to low)</option>
+                            <option value="low_to_high">Rating (low to high)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="fs-4 ms-2">
+                        Bookmarked movies
+                    </h2>
+                    
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <h3 class="fs-5">
+                                Avangers: Infinity war
+                            </h3>
+                            
+                            <button class="btn btn-danger">
+                                Remove
+                            </button>
+                        </li>
+                        
+                        <li class="list-group-item">
+                            <h3 class="fs-5">
+                                The Avangers
+                            </h3>
+                            
+                            <button class="btn btn-danger">
+                                Remove
+                            </button>
+                        </li>
+                        
+                        <li class="list-group-item">
+                            <h3 class="fs-5">
+                                12 Years a Slave
+                            </h3>
+                            
+                            <button class="btn btn-danger">
+                                Remove
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Movie right container -->
+            
+            <div class="result col-xl-8 col-lg-12 col-md-12 col-sm-12">
+                <h2 class="fs-4">
+                    Search results: 20
+                </h2>
+                
+                <div class="alert alert-info" role="alert">
+                    Use the form on the left tom search for a movie
+                </div>
+
+                <div class="film-list row mb-3">
+
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Launch static backdrop modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="main-modal modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-heading modal-title" id="staticBackdropLabel"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./js/movies.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
