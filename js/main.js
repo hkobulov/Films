@@ -27,7 +27,7 @@ for(var film of films){
     newItem.setAttribute('class', 'col-md-6');
     newCard.setAttribute('class', 'card mb-3');
     newImg.setAttribute('class', 'col-md-6');
-    newImg.setAttribute('src', 'https://picsum.photos/500/250');
+    newImg.setAttribute('src', `http://i3.ytimg.com/vi/${film.imdb_id}/maxresdefault.jpg`);
     newImg.setAttribute('class', 'w-100 rounded-top');
     newCardBody.setAttribute('class', 'card-body');
     newHeading.setAttribute('class', 'card-title h5');
@@ -40,7 +40,7 @@ for(var film of films){
     newRatingImg.setAttribute('width', 25);
     newRatingImg.setAttribute('heigth', 25);
     newRating.setAttribute('class', 'text-dark')
-    newLink.setAttribute('href', 'https://www.youtube.com/');
+    newLink.setAttribute('href', `https://www.youtube.com/watch?v=${film.ytid}`);
     newBtnArea.setAttribute('class', 'd-flex justify-content-evenly');
     newBtn.setAttribute('type', 'button');
     newBtn.setAttribute('data-bs-toggle', 'modal');
