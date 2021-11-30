@@ -1,5 +1,5 @@
 var elList = document.querySelector('.film-list');
-var films = movies.slice(0, 100);
+var films = movies.slice(0, 20);
 var elModal = document.querySelector('.main-modal');
 var elInput = document.querySelector('.film-input');
 var elForm = document.querySelector('.film-form');
@@ -21,7 +21,7 @@ elForm.addEventListener('submit', function(evt){
 
     elCount.textContent = filterMovie.length
 
-    for(var film of films){
+    for(var film of filterMovie){
         // New elements
         var newItem = document.createElement('div');
         var newCard = document.createElement('div');
