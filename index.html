@@ -11,16 +11,16 @@
 <body>
     <div class="container p-2">
         <h1 class="fs-2 mb-3 text-center">Movies catalog</h1>
-        <form class="form row" action="https://echo.htmlacademy.ru/" method="get">
+        <form class="film-form form row" method="get">
             <!-- Movie left container -->
             <div class="movie-left col-xl-4 col-md-4 col-sm-12">
                 <div class="mb-4">
                     <div class="mb-3">
-                        <input class="form-control" type="text" placeholder="Film name" name="film_name" aria-label="Film name">
+                        <input class="film-name form-control" type="text" placeholder="Film name" name="film_name" aria-label="Film name">
                     </div>
                     
                     <div class="mb-3">
-                        <input class="form-control" type="number" placeholder="Number" name="film_number" aria-label="Number">
+                        <input class="film-input form-control" type="number" placeholder="In years" name="film_number" aria-label="In years">
                     </div>
                     
                     <div class="mb-3">
@@ -40,6 +40,8 @@
                             <option value="low_to_high">Rating (low to high)</option>
                         </select>
                     </div>
+
+                    <button class="film-btn form-control btn btn-primary" type="button">Search</button>
                 </div>
                 
                 <div>
@@ -85,7 +87,7 @@
             
             <div class="result col-xl-8 col-lg-12 col-md-12 col-sm-12">
                 <h2 class="fs-4">
-                    Search results: 20
+                    Search results: <span class="movies-count">0</span>
                 </h2>
                 
                 <div class="alert alert-info" role="alert">
