@@ -22,6 +22,10 @@
                     <div class="mb-3">
                         <input class="film-input form-control" type="number" placeholder="In years" name="film_number" aria-label="In years">
                     </div>
+
+                    <div class="mb-3">
+                        <input class="film-rating form-control" type="number" placeholder="Rating" name="film_rating" aria-label="Rating" step="any">
+                    </div>
                     
                     <div class="mb-3">
                         <select class="form-select" aria-label="All category" name="category">
@@ -34,10 +38,18 @@
                     </div>
                     
                     <div class="mb-3">
-                        <select class="form-select" aria-label="Rating" name="rating">
+                        <select class="sort-rating form-select" aria-label="Rating" name="rating">
                             <option selected>Rating</option>
                             <option value="high_to_low">Rating (high to low)</option>
                             <option value="low_to_high">Rating (low to high)</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <select class="sort-name form-select" aria-label="sort-name" name="sort-name">
+                            <option selected>Sort by name</option>
+                            <option value="a_z">A - Z</option>
+                            <option value="z_a">Z - A</option>
                         </select>
                     </div>
 
@@ -86,10 +98,13 @@
             <!-- Movie right container -->
             
             <div class="result col-xl-8 col-lg-12 col-md-12 col-sm-12">
-                <h2 class="fs-4">
-                    Search results: <span class="movies-count">0</span>
-                </h2>
+                <div class="mb-3">
+                    <h2 class="fs-4">
+                        Search results: <span class="movies-count">0</span>
+                    </h2>
+                </div>
                 
+
                 <div class="alert alert-info" role="alert">
                     Use the form on the left tom search for a movie
                 </div>

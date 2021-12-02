@@ -1,27 +1,16 @@
+var elForm = document.querySelector('.film-form');
 var elList = document.querySelector('.film-list');
-var films = movies.slice(0, 20);
+var films = movies.slice(0, 50);
 var elModal = document.querySelector('.main-modal');
 var elInput = document.querySelector('.film-input');
-var elForm = document.querySelector('.film-form');
 var elCount = document.querySelector('.movies-count');
+var elRating = document.querySelector('.film-rating');
+var elSortByRating = document.querySelector('.sort-rating');
+var elSortByName = document.querySelector('.sort-name');
 
-
-elForm.addEventListener('submit', function(evt){
-    evt.preventDefault()
-    
-    var nowTime = new Date();
-    var nowYear = nowTime.getFullYear();
-    var inputValue = Number(elInput.value);
-
-    var filterMovie = films.filter(function(item){
-        if(item.movie_year >= nowYear - inputValue){
-            return true
-        }
-    })
-
-    elCount.textContent = filterMovie.length
-
-    for(var film of filterMovie){
+function renderMovie(array, node){
+    elCount.textContent = array.length
+    for(var film of array){
         // New elements
         var newItem = document.createElement('div');
         var newCard = document.createElement('div');
@@ -41,7 +30,7 @@ elForm.addEventListener('submit', function(evt){
         var newBtn = document.createElement('button');
         var newMark = document.createElement('button');
         var newModalHeading = document.createElement('h3');
-    
+        
         // Attribute
         newItem.setAttribute('class', 'col-md-6');
         newCard.setAttribute('class', 'card mb-3');
@@ -76,7 +65,7 @@ elForm.addEventListener('submit', function(evt){
         newLink.textContent = 'Watch trailer';
         newBtn.textContent = 'More info';
         newMark.textContent = 'Bookmark';
-    
+        
         // Append
         newImgCard.appendChild(newImg);
         newItem.appendChild(newCardBody);
@@ -96,7 +85,76 @@ elForm.addEventListener('submit', function(evt){
         newCard.appendChild(newImgCard);
         newCard.appendChild(newCardBody);
         newItem.appendChild(newCard);
-        elList.appendChild(newItem);
+        node.appendChild(newItem);
         elModal.appendChild(newModalHeading);
     }
+}
+
+
+
+renderMovie(films, elList)
+
+elForm.addEventListener('submit', function(evt){
+    evt.preventDefault()
+    
+    var nowTime = new Date();
+    var nowYear = nowTime.getFullYear();
+    var inputValue = Number(elInput.value);
+    var ratingValue = Number(elRating.value);
+    var ratingSelectValue = elSortByRating.value;
+    var nameSelectValue = elSortByName.value;
+    var filteredMovieList = films;
+    
+    // Filter
+    if (inputValue) {
+        filteredMovieList = filteredMovieList.filter(function(item){
+            if(item.movie_year >= nowYear - inputValue){
+                return true
+            }
+        })
+    }
+
+    if (ratingValue) {
+        filteredMovieList = filteredMovieList.filter(function(item){
+            if(item.imdb_rating >= ratingValue){
+                return true
+            }
+        })
+    }
+    
+    if (ratingSelectValue == 'low_to_high') {
+        filteredMovieList = filteredMovieList.sort((a, b) => a.imdb_rating - b.imdb_rating);
+    } else if (ratingSelectValue == 'high_to_low') {
+        filteredMovieList = filteredMovieList.sort((a, b) => b.imdb_rating - a.imdb_rating);        
+    }
+
+    if (nameSelectValue == 'a_z') {
+        filteredMovieList = filteredMovieList.sort((a, b) => String(a.Title).toLowerCase() > String(b.Title).toLowerCase() ? 1 : -1)
+    } else if (nameSelectValue == 'z_a'){
+        filteredMovieList = filteredMovieList.sort((b, a) => String(a.Title).toLowerCase() > String(b.Title).toLowerCase() ? 1 : -1)
+    }
+    
+    // RenderGenre
+    // function renderGenre(films){
+    //     result = []
+    //     films.forEach(film => {
+    //         film.Categories.split('|').forEach(genre => {
+    //             if(!(result.includes(genre))){
+    //                 result.push(genre)
+    //             }
+    //         })
+    //     })
+    //     return result
+    // }
+    
+    
+    elSortByRating.addEventListener('click', function(){
+        
+    })
+    
+    elList.innerHTML = null;
+    
+    renderMovie(filteredMovieList, elList)
 })
+
+
