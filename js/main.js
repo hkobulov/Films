@@ -7,9 +7,14 @@ var elCount = document.querySelector('.movies-count');
 var elRating = document.querySelector('.film-rating');
 var elSortByRating = document.querySelector('.sort-rating');
 var elSortByName = document.querySelector('.sort-name');
+var searchInput = document.querySelector('.film-name');
 
 function renderMovie(array, node){
-    elCount.textContent = array.length
+    if(array.length > 0){
+        elCount.textContent = array.length
+    } else {
+        elCount.textContent = 'not found'
+    }
     for(var film of array){
         // New elements
         var newItem = document.createElement('div');
@@ -35,7 +40,7 @@ function renderMovie(array, node){
         newItem.setAttribute('class', 'col-md-6');
         newCard.setAttribute('class', 'card mb-3');
         newImg.setAttribute('class', 'col-md-6');
-        newImg.setAttribute('src', `http://i3.ytimg.com/vi/${film.imdb_id}/maxresdefault.jpg`);
+        newImg.setAttribute('src', `http://i3.ytimg.com/vi/${film.ytid}/mqdefault.jpg`);
         newImg.setAttribute('class', 'w-100 rounded-top');
         newCardBody.setAttribute('class', 'card-body');
         newHeading.setAttribute('class', 'card-title h5');
@@ -90,22 +95,38 @@ function renderMovie(array, node){
     }
 }
 
-
-
 renderMovie(films, elList)
 
 elForm.addEventListener('submit', function(evt){
     evt.preventDefault()
     
+    var filteredMovieList = films;
+    
     var nowTime = new Date();
     var nowYear = nowTime.getFullYear();
+    var searchValue = searchInput.value.trim().split(' ').join('|');
     var inputValue = Number(elInput.value);
     var ratingValue = Number(elRating.value);
     var ratingSelectValue = elSortByRating.value;
     var nameSelectValue = elSortByName.value;
-    var filteredMovieList = films;
-    
     // Filter
+    
+    
+    
+    if (searchValue){
+        var filteredMovieList = []
+        
+        var searching = new RegExp (searchValue, 'gi');
+        
+        films.forEach(film => {
+            var check = film.Title.toString().match(searching)
+            
+            if(check){
+                filteredMovieList.push(film)
+            }
+        })
+    }
+    
     if (inputValue) {
         filteredMovieList = filteredMovieList.filter(function(item){
             if(item.movie_year >= nowYear - inputValue){
@@ -113,7 +134,7 @@ elForm.addEventListener('submit', function(evt){
             }
         })
     }
-
+    
     if (ratingValue) {
         filteredMovieList = filteredMovieList.filter(function(item){
             if(item.imdb_rating >= ratingValue){
@@ -127,12 +148,13 @@ elForm.addEventListener('submit', function(evt){
     } else if (ratingSelectValue == 'high_to_low') {
         filteredMovieList = filteredMovieList.sort((a, b) => b.imdb_rating - a.imdb_rating);        
     }
-
+    
     if (nameSelectValue == 'a_z') {
         filteredMovieList = filteredMovieList.sort((a, b) => String(a.Title).toLowerCase() > String(b.Title).toLowerCase() ? 1 : -1)
     } else if (nameSelectValue == 'z_a'){
         filteredMovieList = filteredMovieList.sort((b, a) => String(a.Title).toLowerCase() > String(b.Title).toLowerCase() ? 1 : -1)
     }
+    
     
     // RenderGenre
     // function renderGenre(films){
@@ -156,5 +178,3 @@ elForm.addEventListener('submit', function(evt){
     
     renderMovie(filteredMovieList, elList)
 })
-
-
