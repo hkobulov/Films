@@ -20,77 +20,25 @@
                     </div>
                     
                     <div class="mb-3">
-                        <input class="film-input form-control" type="number" placeholder="In years" name="film_number" aria-label="In years">
-                    </div>
-
-                    <div class="mb-3">
                         <input class="film-rating form-control" type="number" placeholder="Rating" name="film_rating" aria-label="Rating" step="any">
                     </div>
                     
                     <div class="mb-3">
-                        <select class="form-select" aria-label="All category" name="category">
-                            <option selected>All</option>
-                            <option value="documentary">Documentary</option>
-                            <option value="music">Music</option>
-                            <option value="drama">Drama</option>
-                            <option value="historical">Historical</option>
+                        <select class="film-select-genre form-select" aria-label="All category" name="category">
+                            <option value="All">All</option>
                         </select>
                     </div>
                     
-                    <div class="mb-3">
-                        <select class="sort-rating form-select" aria-label="Rating" name="rating">
-                            <option selected>Rating</option>
-                            <option value="high_to_low">Rating (high to low)</option>
-                            <option value="low_to_high">Rating (low to high)</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <select class="sort-name form-select" aria-label="sort-name" name="sort-name">
-                            <option selected>Sort by name</option>
-                            <option value="a_z">A - Z</option>
-                            <option value="z_a">Z - A</option>
-                        </select>
-                    </div>
-
                     <button class="film-btn form-control btn btn-primary" type="submit">Search</button>
                 </div>
                 
-                <div>
+                <div class="mb-4">
                     <h2 class="fs-4 ms-2">
                         Bookmarked movies
                     </h2>
                     
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <h3 class="fs-5">
-                                Avangers: Infinity war
-                            </h3>
-                            
-                            <button class="btn btn-danger">
-                                Remove
-                            </button>
-                        </li>
+                    <ul class="bookmark-list list-group">
                         
-                        <li class="list-group-item">
-                            <h3 class="fs-5">
-                                The Avangers
-                            </h3>
-                            
-                            <button class="btn btn-danger">
-                                Remove
-                            </button>
-                        </li>
-                        
-                        <li class="list-group-item">
-                            <h3 class="fs-5">
-                                12 Years a Slave
-                            </h3>
-                            
-                            <button class="btn btn-danger">
-                                Remove
-                            </button>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -99,40 +47,131 @@
             
             <div class="result col-xl-8 col-lg-12 col-md-12 col-sm-12">
                 <div class="mb-3">
+                    <div class="mb-3 d-flex justify-content-between">
+                        <div class="col-5">
+                            <select class="sort-rating form-select" aria-label="Rating" name="rating">
+                                <option selected>Rating</option>
+                                <option value="high_to_low">Rating (high to low)</option>
+                                <option value="low_to_high">Rating (low to high)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-5">
+                            <select class="sort-name form-select" aria-label="sort-name" name="sort-name">
+                                <option selected>Sort by name</option>
+                                <option value="a_z">A - Z</option>
+                                <option value="z_a">Z - A</option>
+                            </select>
+                        </div>
+                    </div>
+                    
                     <h2 class="fs-4">
                         Search results: <span class="movies-count">0</span>
                     </h2>
                 </div>
                 
-
+                
                 <div class="alert alert-info" role="alert">
                     Use the form on the left tom search for a movie
                 </div>
-
-                <div class="film-list row mb-3">
-
+                
+                <div class="film-list row mb-3 justify-content-sm-center justify-content-between">
+                    
                 </div>
             </div>
         </form>
     </div>
-  
-  <!-- Modal -->
-  <div class="main-modal modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-heading modal-title" id="staticBackdropLabel"></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    
+    <!-- Modal -->
+    <div class="main-modal modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-heading modal-title" id="staticBackdropLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
     </div>
-  </div>
+    
+    <template class="film-card-temp">
+        <!-- <div class="card mb-3">
+            <div>
+                <img class="film-card-img w-100 rounded-top" src="http://i3.ytimg.com/vi/4hZi5QaMBFc/mqdefault.jpg">
+            </div>
+            
+            <div class="card-body">
+                <div>
+                    <h3 class="film-card-heading card-title h5"></h3>
+                </div>
+                
+                <div class="mb-3">
+                    <img src="./images/icon-calendar.png" width="25" heigth="25">
+                    
+                    <time class="film-card-year"></time>
+                </div>
+                
+                <div class="mb-3 d-flex align-items-center">
+                    <img src="./images/icon-star.png" width="25" heigth="25">
+                    
+                    <strong class="film-card-rating text-dark"></strong>
+                </div>
+                
+                <div class="d-flex justify-content-evenly">
+                    <a class="film-card-link btn btn-outline-primary" href="">Watch trailer</a>
+                    
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-outline-primary">More info</button>
+                    
+                    <button class="film-card-bookmark btn btn-outline-success" type="button">Bookmark</button>
+                </div>
+            </div>
+        </div>
+         -->
+        
+        <div class="mb-3" style="width: 27rem;">
+            <div class="card">
+                <img class="film-card-img card-img-top" src="" alt="">
+            
+            <div class="card-body">
+                <h5 class="film-card-heading card-title"></h5>
+                
+                <div class="mb-3">
+                    <img src="./images/icon-calendar.png" width="25" heigth="25">
+                    
+                    <time class="film-card-year"></time>
+                </div>
+                
+                <div class="mb-3 d-flex align-items-center">
+                    <img src="./images/icon-star.png" width="25" heigth="25">
+                    
+                    <strong class="film-card-rating text-dark"></strong>
+                </div>
+                
+                <div class="d-flex justify-content-evenly">
+                    <a class="film-card-link btn btn-outline-primary" href="">Watch trailer</a>
+                    
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-outline-primary">More info</button>
+                    
+                    <button class="film-card-bookmark btn btn-outline-success" type="button">Bookmark</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </template>
+
+    <template class="bookmark-temp">
+        <li class="bookmark-list list-group-item">
+            <h3 class="bookmark-heading fs-4">Mendirman</h3>
+
+            <button class="bookmark-btn btn btn-danger">Remove</button>
+        </li>
+    </template>
     
     <script src="./js/js/bootstrap.min.js"></script>
     <script src="./js/movies.js"></script>
