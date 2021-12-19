@@ -1,7 +1,7 @@
-var elForm = document.querySelector('.film-form');
-var elList = document.querySelector('.film-list');
-var films = movies.slice(0, 50);
-var elCount = document.querySelector('.movies-count');
+let elForm = document.querySelector('.film-form');
+let elList = document.querySelector('.film-list');
+let films = movies.slice(0, 50);
+let elCount = document.querySelector('.movies-count');
 var elRating = document.querySelector('.film-rating');
 var elSortByRating = document.querySelector('.sort-rating');
 var elSortByName = document.querySelector('.sort-name');
@@ -24,7 +24,7 @@ var normolizedFilmsList = films.map((item, index) => {
     }
 })
 
-var sortedByRatingName = (normolizedFilmsList) => {
+var  sortedByRatingName = (normolizedFilmsList) => {
     elSortByRating.addEventListener('change', evt => {
         
         var ratingSelectValue = elSortByRating.value;
@@ -114,6 +114,8 @@ function renderMovie(array, node){
 renderMovie(normolizedFilmsList, elList)
 
 // Bookmark
+let storage = window.localStorage;
+
 
 function renderBookMark(bookmarkList){
     var bookmarkFragment = document.createDocumentFragment();
@@ -128,11 +130,14 @@ function renderBookMark(bookmarkList){
     elBookMark.appendChild(bookmarkFragment)
 }
 
-var bookmarkArrayList = []
+let getBookArray = storage.getItem('bookmark');
+
+var bookmarkArrayList = JSON.parse(getBookArray) || [];
+
+renderBookMark(bookmarkArrayList)
 
 elList.addEventListener('click', evt => {
     var bookmarkId = evt.target.dataset.id;
-    
     
     if(bookmarkId){
         var findID = normolizedFilmsList.find(item => {
@@ -145,6 +150,7 @@ elList.addEventListener('click', evt => {
         
         if(!isBookmarkOK){
             bookmarkArrayList.push(findID)
+            storage.setItem('bookmark', JSON.stringify(bookmarkArrayList))
         }
     }
     
@@ -164,6 +170,9 @@ elBookMark.addEventListener('click', evt => {
         })
         
         bookmarkArrayList.splice(findIndex, 1)
+        
+        storage.setItem('bookmark', JSON.stringify(bookmarkArrayList))
+        
         elBookMark.innerHTML = null;
         
         renderBookMark(bookmarkArrayList);
